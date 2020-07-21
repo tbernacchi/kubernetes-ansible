@@ -1,0 +1,8 @@
+- name: Check if docker it's already installed and running
+  command: systemctl status docker.service
+  register: docker_status
+  failed_when: docker_status.rc > 3
+
+- name: Install docker
+  shell: curl -fsSL https://get.docker.com | bash
+  when: "'running' not in docker_status.stdout"

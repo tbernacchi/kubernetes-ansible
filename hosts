@@ -2,8 +2,8 @@
 master ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python3
 
 [workers]
-worker02 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python3
-#worker03 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python3
+#worker02 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python3
+worker03 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python3
 
 [workers:vars]
 K8S_MASTER_NODE_IP=192.168.33.101
