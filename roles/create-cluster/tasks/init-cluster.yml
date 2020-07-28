@@ -144,3 +144,14 @@
     user: root
     job: "sh /usr/local/bin/make_workers_list.sh >/dev/null 2>&1"
     cron_file: workers-list
+
+- name: Create shell script /usr/local/bin/etcdctl.sh
+  template:
+    src: ../templates/etcdctl.sh
+    dest: /usr/local/bin/etcdctl.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Running /usr/local/bin/etcdctl.sh
+  command: sh /usr/local/bin/etcdctl.sh
