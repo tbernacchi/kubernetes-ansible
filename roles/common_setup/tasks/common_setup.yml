@@ -26,7 +26,7 @@
     group: root
     mode: '0755'
 
-- name: Running /usr/local/bin/check-update.sh
+- name: Checking apt-get update/upgrade 
   shell: sh /usr/local/bin/check-update.sh 
 
 - name: Template a file to /etc/modules-load.d/k8s.conf
@@ -37,14 +37,15 @@
     group: root
     mode: '0755'
 
-- name: Check if docker it's already installed and running
-  command: systemctl status docker.service
-  register: docker_status
-  failed_when: docker_status.rc > 3
+- name: Check if docker it's already installed
+  shell: dpkg-query -W 'docker' 
+  ignore_errors: true 
+  no_log: true 
+  register: is_docker 
 
 - name: Install docker
   shell: curl -fsSL https://get.docker.com | bash
-  when: "'running' not in docker_status.stdout"
+  when: is_docker|bool == False
 
 - name: Creating /etc/docker
   file:

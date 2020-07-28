@@ -39,5 +39,11 @@
   no_log: true
   register: script 
 
+- name: Output error
+  debug:
+    msg:
+    - "FAILED! => FAILED! message above means the node it's already in to the cluster!"
+  when: script is failed
+
 #- name: Reboot worker nodes 
 #  reboot:
