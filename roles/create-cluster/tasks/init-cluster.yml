@@ -63,11 +63,17 @@
     path: ~/.kube
     state: directory
 
+- name: Stat /root/.kube/config
+  stat: 
+    path: /root/.kube/config
+  register: kubeconfig
+
 - name: Symlink the kubectl admin.conf to ~/.kube/conf.
   file:
     src: /etc/kubernetes/admin.conf
     dest: ~/.kube/config
     state: link
+  when: kubeconfig.stat.exists == False 
 
 - name: Create shell script /usr/local/bin/check_weave_k8s.sh
   template:
