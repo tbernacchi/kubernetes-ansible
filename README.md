@@ -3,7 +3,6 @@
 </p>
 
 > My kubernetes cluster with some bash scripts;
-> I dont remember which OS I used but I'm pretty sure It was a Debian like =) 
 
 ![Kubernetes](/.github/assets/img/kubernetes-logo.png)
 
