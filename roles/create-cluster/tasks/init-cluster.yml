@@ -24,6 +24,12 @@
   - daemon-reload
   - restart docker
 
+- name: Reload configs
+  systemd: daemon_reload=yes
+
+- name: Restart docker
+  systemd: state=restarted name=docker
+
 - name: Check if the master it's already in Ready state
   shell: kubectl get nodes | grep master| awk "{ print $2 }"
   register: master_ready 
@@ -54,7 +60,7 @@
 
 - name: Initialize Kubernetes master with kubeadm init.
   shell: >
-    kubeadm init --apiserver-advertise-address {{ ansible_eth1.ipv4.address }} 
+    kubeadm init --apiserver-advertise-address {{ ansible_eth0.ipv4.address }} --ignore-preflight-errors all 
   register: kubeadmin_init
   when: admin_conf.stat.exists == False
 

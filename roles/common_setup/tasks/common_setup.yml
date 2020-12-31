@@ -43,8 +43,22 @@
   no_log: true 
   register: is_docker 
 
+- name: Add apt signing key for docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+
 - name: Install docker
-  shell: curl -fsSL https://get.docker.com | bash
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - docker-ce=5:19.03.14~3-0~ubuntu-xenial
   when: is_docker|bool == False
 
 - name: Creating /etc/docker
@@ -101,7 +115,7 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - kubelet
-    - kubeadm
-    - kubectl
+    - kubelet=1.19.1-00
+    - kubeadm=1.19.1-00
+    - kubectl=1.19.1-00
     - bash-completion 
