@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: yes
-  user: vagrant 
+  user: ubuntu
   gather_facts: no
   pre_tasks:
   - name: 'install python'
@@ -9,21 +9,21 @@
 
 - hosts: teste
   become: yes 
-  user: vagrant 
+  user: ubuntu 
   roles: 
   - common_setup 
   tags: common
 
 - hosts: teste
   become: yes 
-  user: vagrant 
+  user: ubuntu 
   roles: 
   - create-cluster
   tags: master 
 
 - hosts: workers
   become: yes
-  user: vagrant 
+  user: ubuntu 
   roles: 
   - common_setup
   - workers 
