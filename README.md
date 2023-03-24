@@ -2,7 +2,7 @@
 <p>
 </p>
 
-> My kubernetes cluster with some bash scripts;
+> My kubernetes cluster using kubeadm with some bash scripts;
 
 ![Kubernetes](/.github/assets/img/kubernetes-logo.png)
 
